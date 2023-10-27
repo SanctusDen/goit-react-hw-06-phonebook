@@ -4,23 +4,21 @@ import { Form } from 'components/formContainer/formDiv.styled';
 import { Label, Field, SubmitBtn } from './ContactForm-module';
 import { nanoid } from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
+import { setOptions } from 'redux/ContactFormReducer';
 
 export const ContactForm = ({ onSubmit }) => {
   const options = useSelector(state => state.ContactForm.options);
   const dispatch = useDispatch();
 
   const handleChange = e => {
-    dispatch({
-      type: 'contacts/setOptions',
-      payload: { ...options, [e.target.name]: e.target.value },
-    });
+    dispatch(setOptions({ ...options, [e.target.name]: e.target.value }));
   };
 
   const handleSubmit = e => {
     e.preventDefault();
 
     onSubmit({ ...options, id: nanoid() });
-    dispatch({ type: 'contacts/setOptions', payload: options });
+    dispatch(setOptions(options));
   };
 
   return (
