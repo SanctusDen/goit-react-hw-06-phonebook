@@ -15,12 +15,12 @@ import { ContactFormReducer } from './ContactFormReducer';
 const contactFormConfig = {
   key: 'contacts',
   storage,
-  whitelist: ['contacts'],
+  whitelist: ['items'],
 };
 
 export const store = configureStore({
   reducer: {
-    ContactForm: persistReducer(contactFormConfig, ContactFormReducer),
+    contacts: persistReducer(contactFormConfig, ContactFormReducer),
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
